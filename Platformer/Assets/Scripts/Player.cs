@@ -69,16 +69,21 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision){
 
-        if(collision.gameObject.layer == 8){
+        if(collision.gameObject.layer == 8 | collision.gameObject.layer == 9){
             isJumping = false;
             anim.SetBool("jump", false);
+        }
+
+        if(collision.gameObject.tag == "spike"){
+           GameController.instance.ShowGameOver();
+           Destroy(gameObject);
         }
 
     }
 
     void OnCollisionExit2D(Collision2D collision){
 
-        if(collision.gameObject.layer == 8){
+        if(collision.gameObject.layer == 8 | collision.gameObject.layer == 9){
             isJumping = true;
         }
     }
